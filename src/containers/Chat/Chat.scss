@@ -1,13 +1,81 @@
+@import "../../theme/variables.scss";
+
 .chat {
-  input {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
+  background: darken(#f8f8f8, 2%);
+  width:100%;
+  padding-top: 10px;
+  margin: 0px;
+
   form {
-    margin: 30px 0;
+    background: darken(#f8f8f8, 4%);
+    width: 100%;
+    height: 50px;
+    padding: 5px 15px;
+    border: 1px solid #e7e7e7;
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+
+    input {
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        flex: 1;
+        margin-right: 10px;
+    }
     :global(.btn) {
-      margin-left: 10px;
+      background: darken($cyan, 5%);
+      color: white;
+      text-transform: uppercase;
     }
   }
+
+  ul {
+    padding: 0px;
+
+    li {
+      list-style: none;
+      width: 100%;
+      display: flex;
+
+      span {
+        width: 40%;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 5px 0px;
+
+        @media(max-width: 320px) {
+          width: 100%;
+        }
+      }
+    }
+
+      :global(.current-user) > span {
+        background: $cyan;
+        color: white;
+      }
+
+      :global(.other-user) {
+        flex-direction: row-reverse;
+
+        span {
+            background: white;
+            color: black;
+        }
+      }
+
+    :global(.user){
+      text-transform: uppercase;
+    }
+
+    :global(.emote){
+      font-style: italic;
+    }
+
+  }
+}
+
+:global(.well){
+  display: none; //Hide footer widgets - todo: do this better - currently disables this everywhere. So is very bad.
 }

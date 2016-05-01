@@ -49,19 +49,44 @@ export default class Chat extends Component {
     });
   }
 
+  formatChat(username, message) {
+    let chat;
+    if (message.indexOf('/me') === 0) {
+      chat = <span className={'emote'}>{message.replace('/me', username)}</span>;
+    } else {
+      chat = <span><div className={'user'}><i className={'fa fa-smile-o'} /> {username}</div><div className={'message'}>{message}</div></span>;
+    }
+    return chat;
+  }
+
+  censor(message) {
+    const regex = new RegExp('(potato|real estate agent|rea|carbs)', 'gi');
+    return message.replace(regex, function(match) {
+      return '#@*!%'.repeat(match.length).substring(0, match.length);
+    });
+  }
+
+  emote(message) {
+    const regex = new RegExp('(/me)');
+    return message.replace(regex, this.props);
+  }
+
   render() {
     const style = require('./Chat.scss');
+    const classNames = require('classnames');
     const {user} = this.props;
 
     return (
       <div className={style.chat + ' container'}>
-        <h1 className={style}>Chat</h1>
-
         {user &&
         <div>
           <ul>
           {this.state.messages.map((msg) => {
-            return <li key={`chat.msg.${msg.id}`}>{msg.from}: {msg.text}</li>;
+            const messageClass = classNames({
+              'current-user': user.name === msg.from,
+              'other-user': !(user.name === msg.from)
+            });
+            return <li key={`chat.msg.${msg.id}`} className={messageClass}>{this.formatChat(msg.from, this.censor(msg.text))}</li>;
           })}
           </ul>
           <form className="login-form" onSubmit={this.handleSubmit}>
