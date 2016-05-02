@@ -54,7 +54,7 @@ export default class Chat extends Component {
     if (message.indexOf('/me') === 0) {
       chat = <span className={'emote'}>{message.replace('/me', username)}</span>;
     } else {
-      chat = <span><div className={'user'}><i className={'fa fa-smile-o'} /> {username}</div><div className={'message'}>{message}</div></span>;
+      chat = <span><div className={'user'}><i className={'fa fa-smile-o'} />{username}</div><div className={'message'}>{message}</div></span>;
     }
     return chat;
   }
