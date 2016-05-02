@@ -61,7 +61,7 @@ export default class Chat extends Component {
 
   censor(message) {
     const regex = new RegExp('(potato|real estate agent|rea|carbs)', 'gi');
-    return message.replace(regex, function(match) {
+    return message.replace(regex, (match) => {
       return '#@*!%'.repeat(match.length).substring(0, match.length);
     });
   }

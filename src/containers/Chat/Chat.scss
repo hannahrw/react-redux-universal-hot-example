@@ -5,8 +5,8 @@
   padding: 0px;
 
   form {
-    background: darken(#f8f8f8, 4%);
-    border: 1px solid #e7e7e7;
+    background: darken($background, 4%);
+    border: 1px solid $border;
     width: 100%;
     padding: 5px 15px;
 
@@ -38,7 +38,7 @@
     overflow-y: scroll;
     padding: 10px;
 
-    background: darken(#f8f8f8, 2%);
+    background: darken($background, 2%);
 
     li {
       list-style: none;
@@ -68,15 +68,6 @@
        span {
           background: $cyan;
         color: white;
-      }
-    }
-
-    :global(.other-user) {
-      flex-direction: row-reverse;
-
-      span {
-        background: white;
-        color: black;
       }
     }
 
