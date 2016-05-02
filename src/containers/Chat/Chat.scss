@@ -1,17 +1,15 @@
 @import "../../theme/variables.scss";
 
 .chat {
-  background: darken(#f8f8f8, 2%);
-  width:100%;
-  padding-top: 10px;
   margin: 0px;
+  padding: 0px;
 
   form {
     background: darken(#f8f8f8, 4%);
-    width: 100%;
-    height: 50px;
-    padding: 5px 15px;
     border: 1px solid #e7e7e7;
+    width: 100%;
+    padding: 5px 15px;
+
     display: flex;
     position: fixed;
     bottom: 0px;
@@ -23,6 +21,7 @@
         border: 1px solid #ccc;
         flex: 1;
         margin-right: 10px;
+        height: 40px;
     }
     :global(.btn) {
       background: darken($cyan, 5%);
@@ -32,12 +31,20 @@
   }
 
   ul {
-    padding: 0px;
+    width:100%;
+    top: $navbar-height;
+    bottom: 40px;
+    position: fixed;
+    overflow-y: scroll;
+    padding: 10px;
+
+    background: darken(#f8f8f8, 2%);
 
     li {
       list-style: none;
       width: 100%;
       display: flex;
+      flex-direction: row-reverse;
 
       span {
         width: 40%;
@@ -45,25 +52,33 @@
         padding: 10px;
         margin: 5px 0px;
 
-        @media(max-width: 320px) {
-          width: 100%;
+        background: white;
+        color: black;
+
+        @media(max-width: 700px) {
+            width: 100%;
         }
       }
     }
 
-      :global(.current-user) > span {
-        background: $cyan;
+    :global(li.current-user)
+    {
+       flex-direction: row;
+
+       span {
+          background: $cyan;
         color: white;
       }
+    }
 
-      :global(.other-user) {
-        flex-direction: row-reverse;
+    :global(.other-user) {
+      flex-direction: row-reverse;
 
-        span {
-            background: white;
-            color: black;
-        }
+      span {
+        background: white;
+        color: black;
       }
+    }
 
     :global(.user){
       text-transform: uppercase;
@@ -74,8 +89,4 @@
     }
 
   }
-}
-
-:global(.well){
-  display: none; //Hide footer widgets - todo: do this better - currently disables this everywhere. So is very bad.
 }

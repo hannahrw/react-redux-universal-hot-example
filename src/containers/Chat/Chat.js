@@ -83,8 +83,7 @@ export default class Chat extends Component {
           <ul>
           {this.state.messages.map((msg) => {
             const messageClass = classNames({
-              'current-user': user.name === msg.from,
-              'other-user': !(user.name === msg.from)
+              'current-user': user.name === msg.from
             });
             return <li key={`chat.msg.${msg.id}`} className={messageClass}>{this.formatChat(msg.from, this.censor(msg.text))}</li>;
           })}
